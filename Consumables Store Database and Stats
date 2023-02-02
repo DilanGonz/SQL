@@ -1,0 +1,36 @@
+--Create a grocery store database
+
+
+CREATE TABLE consumables (id INTEGER PRIMARY KEY, item TEXT, quantity INTEGER, aisle INTEGER, price INTEGER);
+INSERT INTO consumables
+VALUES
+(1, "hershey bar", 4, 2, 1.00),
+(2, "skittles", 3, 1, 1.20),
+(3, "reese's cup", 6, 2, 1.80),
+(4, "payday", 2, 3, 2.00),
+(5, "peanuts", 3, 3, 2.50),
+(6, "popcorn", 1, 4, 3.00),
+(7, "doritos", 2, 4, 3.00),
+(8, "M&Ms", 3, 2, 1.20),
+(9, "beef jerky", 2, 5, 6.00),
+(10, "slim jim", 2, 5, 2.20),
+(11, "banana", 3, 6, 1.00),
+(12, "apple", 3, 6, 1.20),
+(13, "orange", 2, 6, 1.10),
+(14, "pepsi", 4, 7, 1.00),
+(15, "lemonade", 3, 7, 1.40);
+
+--display the database ordered by price. 
+SELECT * FROM consumables ORDER BY price;
+
+--display the sum of quantities sold in the database.
+SELECT SUM(quantity) FROM consumables;
+
+--display the sum of quantities sold in each aisle.
+SELECT aisle, SUM(quantity) FROM consumables GROUP BY aisle;
+
+--what is the average price of items in aisle 3?
+SELECT AVG(price) "avg aisle 3 item price"
+FROM consumables
+WHERE aisle=3;
+
