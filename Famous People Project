@@ -1,0 +1,89 @@
+/* Create table about the famous people and what they do here */
+CREATE TABLE famous_persons (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT);
+    
+INSERT INTO famous_persons (fullname) VALUES ("Lebron James");
+INSERT INTO famous_persons (fullname) VALUES ("Patrick Mahomes");
+INSERT INTO famous_persons (fullname) VALUES ("Julius Randle");
+INSERT INTO famous_persons (fullname) VALUES ("Josh Allen");
+INSERT INTO famous_persons (fullname) VALUES ("Aaron Rodgers");
+INSERT INTO famous_persons (fullname) VALUES ("Steph Cuury");
+INSERT INTO famous_persons (fullname) VALUES ("Von Miller");
+INSERT INTO famous_persons (fullname) VALUES ("Kevin Durant");
+INSERT INTO famous_persons (fullname) VALUES ("Joe Burrow");
+INSERT INTO famous_persons (fullname) VALUES ("Ja Morant");
+INSERT INTO famous_persons (fullname) VALUES ("Jalen Hurts");
+INSERT INTO famous_persons (fullname) VALUES ("Kevin Love");
+INSERT INTO famous_persons (fullname) VALUES ("Derrick Henry");
+INSERT INTO famous_persons (fullname) VALUES ("Zion Williamson");
+INSERT INTO famous_persons (fullname) VALUES ("Justin Jefferson");
+
+
+CREATE TABLE home_state (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    state TEXT);
+INSERT INTO home_state (person_id, state) VALUES (1, "Ohio");
+INSERT INTO home_state (person_id, state) VALUES (2, "Texas");
+INSERT INTO home_state (person_id, state) VALUES (3, "Texas");
+INSERT INTO home_state (person_id, state) VALUES (4, "California");
+INSERT INTO home_state (person_id, state) VALUES (5, "California");
+INSERT INTO home_state (person_id, state) VALUES (6,"Ohio");
+INSERT INTO home_state (person_id, state) VALUES (7, "Texas");
+INSERT INTO home_state (person_id, state) VALUES (8, "Maryland");
+INSERT INTO home_state (person_id, state) VALUES (9, "Iowa");
+INSERT INTO home_state (person_id, state) VALUES (10, "South Carolina");
+INSERT INTO home_state (person_id, state) VALUES (11, "Texas");
+INSERT INTO home_state (person_id, state) VALUES (12, "California");
+INSERT INTO home_state (person_id, state) VALUES (13, "Florida");
+INSERT INTO home_state (person_id, state) VALUES (14, "North Carolina");
+INSERT INTO home_state (person_id, state) VALUES (15, "Louisiana");
+
+
+SELECT * FROM home_state;
+
+CREATE TABLE sport_played (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    sport TEXT);
+INSERT INTO sport_played (person_id, sport) VALUES (1, "basketball");
+INSERT INTO sport_played (person_id, sport) VALUES (2, "football");
+INSERT INTO sport_played (person_id, sport) VALUES (3, "basketball");
+INSERT INTO sport_played (person_id, sport) VALUES (4, "football");
+INSERT INTO sport_played (person_id, sport) VALUES (5, "football");
+INSERT INTO sport_played (person_id, sport) VALUES (6, "basketball");
+INSERT INTO sport_played (person_id, sport) VALUES (7, "football");
+INSERT INTO sport_played (person_id, sport) VALUES (8, "basketball");
+INSERT INTO sport_played (person_id, sport) VALUES (9, "football");
+INSERT INTO sport_played (person_id, sport) VALUES (10, "basketball");
+INSERT INTO sport_played (person_id, sport) VALUES (11, "football");
+INSERT INTO sport_played (person_id, sport) VALUES (12, "basketball");
+INSERT INTO sport_played (person_id, sport) VALUES (13, "football");
+INSERT INTO sport_played (person_id, sport) VALUES (14,"basketball");
+INSERT INTO sport_played (person_id, sport) VALUES (15, "football");
+
+
+SELECT * FROM sport_played;
+
+/* what states are the famous people from? */
+
+SELECT famous_persons.fullname, home_state.state FROM famous_persons
+JOIN home_state
+ON famous_persons.id = home_state.person_id;
+
+/* what sports do the famous people play? */
+SELECT famous_persons.fullname, sport_played.sport
+FROM famous_persons
+JOIN sport_played
+ON famous_persons.id = sport_played.person_id;
+
+/* what famous people play football and are from Texas? */
+SELECT famous_persons.fullname, home_state.state, sport_played.sport
+FROM famous_persons
+JOIN home_state
+ON famous_persons.id = home_state.person_id
+JOIN sport_played
+ON famous_persons.id = sport_played.person_id
+WHERE home_state.state = "Texas" AND sport_played.sport = "football";
+
